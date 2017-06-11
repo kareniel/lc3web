@@ -65,9 +65,10 @@ a | b    // OR
 1. x0000-x00FF Trap Vector Table
 2. x0100-x01FF Interrupt Vector Table
 3. x0200-x2FFF Operating System & Supervisor Stack
-4. x3000-xFDFF Available for user programs
+4. x3000-xFDFF Available for user programs (12,288 - 65,023)
 5. xFE00-xFFFF Device Register addresses
 
 #### Questions
 
+- 16-bit binary arithmetic in Javascript?
 - What state should a register be in if it has not been initialized?

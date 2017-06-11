@@ -3,7 +3,6 @@
   color: white;
   font-family: monospace;
   font-size: 18px;
-  width: 80ch;
   height: 40ch;
   position: relative;
 }
@@ -26,4 +25,14 @@
   border: none;
   height: 18px;
   width: 80%;
+}
+
+.col {
+  width: 49.6%;
+  display: inline-block;
+}
+
+textarea {
+  width: 80ex;
+  height: 80ex;
 }
