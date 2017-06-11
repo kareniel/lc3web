@@ -5,8 +5,6 @@ module.exports = el => function (state, emit) {
     <body>
       <nav>
         <ul>
-          <li><a href="/">state</a></li>
-          <li><a href="/program">program</a></li>
         </ul>
       </nav>
       ${el(state, emit)}

@@ -1,38 +1,77 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.col {
+  width: 100%;
+  padding: 0.5em;
+}
+
+#registers {
+
+}
+
 #terminal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   background-color: black;
   color: white;
   font-family: monospace;
   font-size: 18px;
-  height: 40ch;
+  height: 300px;
   position: relative;
+  padding: 5px;
+  border: 1px solid white;
+}
+
+#terminal-output {
+  height: 100%;
 }
 
 #terminal-input {
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 22px;
 }
 
 #terminal-input-prefix {
-  display; inline-block;
-  width: 20%;
 }
 
-#terminal-input input{
+#terminal-input-field{
+  background-color: black;
+  color: white;
+  height: 18px;
+  width: 100%;
+}
+
+#terminal-input-field input{
+  background: none;
+  color: white;
+  font-size: 18px;
+  height: 18px;
+  border: none;
+  width: 100%;
+  font-family: monospace;
+}
+
+#program textarea {
+  width: 100%;
+  min-height: 600px;
   background-color: black;
   color: white;
   font-size: 18px;
-  border: none;
-  height: 18px;
-  width: 80%;
+  border: 1px solid white;
+  font-family: monospace;
 }
 
-.col {
-  width: 49.6%;
-  display: inline-block;
-}
-
-textarea {
-  width: 80ex;
-  height: 80ex;
-}
