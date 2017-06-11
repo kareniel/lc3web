@@ -1,0 +1,28 @@
+{
+  "name": "lc3web",
+  "version": "1.0.0",
+  "description": "lc-3 simulator",
+  "main": "index.js",
+  "scripts": {
+    "start": "budo src/index.js --live --css src/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kareniel/lc3web.git"
+  },
+  "keywords": [
+    "lc3"
+  ],
+  "author": "kareniel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kareniel/lc3web/issues"
+  },
+  "homepage": "https://github.com/kareniel/lc3web#readme",
+  "dependencies": {
+    "choo": "^5.6.2"
+  },
+  "devDependencies": {
+    "budo": "^10.0.3"
+  }
+}

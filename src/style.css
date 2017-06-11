@@ -1,0 +1,29 @@
+#terminal {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  font-size: 18px;
+  width: 80ch;
+  height: 40ch;
+  position: relative;
+}
+
+#terminal-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#terminal-input-prefix {
+  display; inline-block;
+  width: 20%;
+}
+
+#terminal-input input{
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  border: none;
+  height: 18px;
+  width: 80%;
+}
