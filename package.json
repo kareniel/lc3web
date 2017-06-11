@@ -4,7 +4,8 @@
   "description": "lc-3 simulator",
   "main": "index.js",
   "scripts": {
-    "start": "budo src/index.js --live --css  src/assets/style.css --pushstate"
+    "start": "budo src/index.js:bundle.js --live --css  src/assets/style.css --pushstate",
+    "build": "bash bin/build"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
     "choo": "^5.6.2"
   },
   "devDependencies": {
-    "budo": "^10.0.3"
+    "budo": "^10.0.3",
+    "es2040": "^1.2.5",
+    "yo-yoify": "^3.7.3"
   }
 }

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir -p dist
+browserify src/index.js \
+  -g yo-yoify \
+  -g es2040 \
+  > dist/bundle.js
+
+cp src/assets/index.html dist/
+cp src/assets/style.css dist/
