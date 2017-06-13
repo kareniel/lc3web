@@ -5,7 +5,7 @@ module.exports = function (state, emitter) {
   state.MDR = new Int16(0) // Memory Data
   state.MEMORY = new Array(Math.pow(2, 16))
     .fill(0)
-    .map(x => x = new Int16(0))
+    .map((x, i) => x = new Int16(0))
 
   emitter.on('DOMContentLoaded', () => {
     emitter.on('memory:load', payload => {
