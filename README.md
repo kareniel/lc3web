@@ -72,3 +72,5 @@ a | b    // OR
 
 - 16-bit binary arithmetic in Javascript?
 - What state should a register be in if it has not been initialized?
+- Should I use integers for states or just enums?
+- What if I used streams to represent control signals?
