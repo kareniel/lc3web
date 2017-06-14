@@ -1,9 +1,5 @@
-const IntN = require('IntN')
+const Int16 = require('../Int16')
 const opcodes = require('../opcodes')
-const Int16 = IntN(16)
-const Int3 = IntN(3)
-const Int2 = IntN(2)
-const Int1 = IntN(1)
 
 module.exports = function (state, emitter) {
   state.PC = new Int16(0)  // Program Counter
@@ -11,106 +7,104 @@ module.exports = function (state, emitter) {
   state.PSR = new Int16(0) // Processor Status Register
 
   state.CC = {
-    N: new Int1(0),
-    Z: new Int1(0),
-    P: new Int1(0)
+    N: false,
+    Z: false,
+    P: false
   }
 
   state.controlSignals = {
-    DR: new Int1(0),
-    SR1: new Int1(0),
-    BEN: new Int1(0),             // Branch
-    INT: new Int1(0),             // Interrupt present
-    R: new Int1(0)                // Memory finished loading
+    DR: false,
+    SR1: false,
+    BEN: false,             // Branch
+    INT: false,             // Interrupt present
+    R: false                // Memory finished loading
   }
 
   state.microsequencerControlSignals = {
-    J: new Int6(0),
-    COND: new Int3(0),
+    J: '6-bit',
+    COND: '4-bit',
       // CONDO ;Unconditional
       // CONDI ;Memory Ready
       // C0ND2 ;Branch
       // C0ND3 ;Addressing Mode
       // C0ND4 ;Privilege Mode
       // C0ND5 ;Interrupt test
-    IRD: new Int1(0) 
+    IRD: false 
   }
 
   state.dataPathControlSignals = {
     LD: {
-      MAR: new Int1(0),
-      MDR: new Int1(0),
-      IR: new Int1(0),
-      BEN: new Int1(0),
-      REG: new Int1(0),
-      CC: new Int1(0),
-      PC: new Int1(0),
-      Priv: new Int1(0),
-      SavedSSP: new Int1(0),
-      SavedUSP: new Int1(0),
-      Vector: new Int1(0)
+      MAR: false,
+      MDR: false,
+      IR: false,
+      BEN: false,
+      REG: false,
+      CC: false,
+      PC: false,
+      Priv: false,
+      SavedSSP: false,
+      SavedUSP: false,
+      Vector: false
     },
     gate: {
-      PC: new Int1(0),
-      MDR: new Int1(0),
-      ALU: new Int1(0),
-      MARMUX: new Int1(0),
-      Vector: new Int1(0),
-      PC1: new Int1(0),
-      PSR: new Int1(0),
-      SP: new Int1(0)
+      PC: false,
+      MDR: false,
+      ALU: false,
+      MARMUX: false,
+      Vector: false,
+      PC1: false,
+      PSR: false,
+      SP: false
     },
     MUX: {
-      PC: new Int2(0), // 'PC+1', 'BUS', 'ADDER'
-      DR: new Int2(0), // '11.9', 'R7', 'SP'
+      PC: '2-bit', // 'PC+1', 'BUS', 'ADDER'
+      DR: '2-bit', // '11.9', 'R7', 'SP'
       SR1: '11.9',
-      ADDR1: new Int1(0), //'PC', 'BaseR'
-      ADDR2: new Int2(0), // 'ZERO', 'offset6', 'PCoffset9', 'PCoffset11'
-      SP: new Int2(0), // 'SP+1', 'SP-1', 'Saved SSP', 'Saved USP'
-      MAR: new Int1(0), // '7.0', 'ADDER'
-      Vector: new Int2(0), // 'INTV', 'Priv.exception', 'Opc.exception'
-      PSR: new Int1(0) //'individual settings', 'BUS'
-    }
-    ALUK: new Int2(0) //'ADD', 'AND', 'NOT', 'PASSA'
-    MIO: {
-      EN: new Int1(0),
-      RW: new Int1(0) // 'RD', 'WR'
+      ADDR1: false, //'PC', 'BaseR'
+      ADDR2: '2-bit', // 'ZERO', 'offset6', 'PCoffset9', 'PCoffset11'
+      SP: '2-bit', // 'SP+1', 'SP-1', 'Saved SSP', 'Saved USP'
+      MAR: false, // '7.0', 'ADDER'
+      Vector: '2-bit', // 'INTV', 'Priv.exception', 'Opc.exception'
+      PSR: false //'individual settings', 'BUS'
     },
-    setPriv: new Int1(0)
+    ALUK: '2-bit', //'ADD', 'AND', 'NOT', 'PASSA'
+    MIO: {
+      EN: false,
+      RW: false // 'RD', 'WR'
+    },
+    setPriv: false
   }
 
   emitter.on('DOMContentLoaded', () => {
     emitter.on('clock:rise', () => {
+        // // FETCH I
+        //   if () {
+        //     state.MAR = state.PC
+        //     state.PC = state.PC.add(1)
+        //     state.cycle++
+        //     return emitter.emit('render')
+        //   }
 
+        // // FETCH II
+        //   if () {
+        //     emitter.emit('memory:load')
+        //     state.cycle++
+        //     return emitter.emit('render')
+        //   }
 
-        // FETCH I
-          if () {
-            state.MAR = state.PC
-            state.PC = state.PC.add(1)
-            state.cycle++
-            return emitter.emit('render')
-          }
+        // // FETCH III
+        //   if () {
+        //     state.IR = state.MDR
+        //     state.cycle++
+        //     return emitter.emit('render')
+        //   }
 
-        // FETCH II
-          if () {
-            emitter.emit('memory:load')
-            state.cycle++
-            return emitter.emit('render')
-          }
-
-        // FETCH III
-          if () {
-            state.IR = state.MDR
-            state.cycle++
-            return emitter.emit('render')
-          }
-
-          // state 32
-          if () {
-            const opcode = opcodes[instruction.slice(0, 3)]
-            emitter.emit(opcode)
-          }
-      }
+        //   // state 32
+        //   if () {
+        //     const opcode = opcodes[instruction.slice(0, 3)]
+        //     emitter.emit(opcode)
+        //   }
+      
     })
   })
 }
@@ -121,18 +115,18 @@ function microsequencer (opcode, IRD) {
 
 function getBEN (P, Z, N, IR119) {
   // IR[11:9], PSR(N, Z, P)
-  const BEN
+  let BEN
   return BEN
 }
 
 function getDR (R7, R6, IR119) {
   // IR[11:9], 110, 111
-  const DR
+  let DR
   return DR
 }
 
 function getSR1 (R6, IR86, IR119) {
   // IR[11:9], IR[8:6], 110
-  const SR1
+  let SR1
   return SR1
 }
