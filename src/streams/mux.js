@@ -1,27 +1,32 @@
 const args = process.argv.slice(2)
-const x = args[0]
-const y = args[1]
+const x = parseInt(args[0])
+const y = parseInt(args[1])
 
-//  2^n inputs and n select lines
-// (int(4), int(2)) -> bool
-function fourTwo (x, y) {
-  x = dec2bin(x)
-  x = '0000'.substr(x.length) + x
-  y = dec2bin(y)
-  y = '00'.substr(y.length) + y
+const fourOne = getMux(2)
+console.log(fourOne(x, y))
 
-  const a = x[0]
-  const b = x[1]
-  const c = x[2]
-  const d = x[3]
+// 2^n inputs and n select lines
+// ie: (2,1)  (4,2)  (8,3)  (16,4)  (32,5)  (64,6)  (128,7)  (256,8)
+// (int(2^n), int(n)) -> bool
+function getMux (n) {
+  return function mux (data, control) {
+    data = dec2bin(x)
+    data = (
+      Array(Math.pow(2, n))
+        .fill(0)
+        .join('')
+        .substr(data.length) + data
+    ).split('')
 
-  const s1 = y[0]
-  const s2 = y[1]
+    const ands = data.map((val, i) => val & (i === control))
 
-  return +((a && !s1 && !s2) || (b && !s1 && s2) || (c && s1 && !s2) || (d && s1 && s2))
+    return orGate(...ands)
+  }
 }
 
-console.log(fourTwo(x, y))
+function orGate () {
+  return +([...arguments].reduce((p,c) => p || c))
+}
 
 function dec2bin(dec){
     const str = (dec >>> 0).toString(2)
